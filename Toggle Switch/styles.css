@@ -1,0 +1,50 @@
+:root {
+    --on: #6948ed;
+    --off: #555;
+    --toggle-width: 80px;
+    --toggle-height: 30px;
+  }
+body {
+    background: #333;
+}
+  
+  /* solution styles */
+
+.toggle input {
+    height: 0;
+    width: 0;
+}
+
+.toggle .switch {
+    display: block;
+    margin: 100px auto;
+    width: var(--toggle-width);
+    height: var(--toggle-height);
+    padding: 5px;
+    cursor: pointer;
+    background-color: var(--off);
+    border-radius: 40px;
+    position: relative;
+    transition: all ease 0.3s;
+}
+
+.toggle .switch::before {
+    content: '';
+    display: block;
+    height: var(--toggle-height);
+    width: var(--toggle-height);
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: all ease 0.3s;
+}
+
+.toggle input:checked ~ .switch {
+    background-color: var(--on);
+}
+
+.toggle input:checked ~ .switch::before {
+    left: calc(var(--toggle-width) - var(--toggle-height));
+}
