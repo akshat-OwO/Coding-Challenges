@@ -24,15 +24,37 @@ div.insertAdjacentHTML('beforeend', '<p>Third para</p>');
 // BEGINNER+ CHALLENGES //
 
 // 1. Add an unordered sublist to the last list item with three children ("one", "two", and "three").
+const list = document.querySelector('.list');
+list.lastElementChild.insertAdjacentHTML('beforeend', `<ul>
+    <li>one</li>
+    <li>two</li>
+    <li>three</li>
+</ul>`);
 
 // 2. Add a paragraph after the list of items with a class of "glow."
+list.insertAdjacentHTML('afterend', '<p class="glow">glow para</p>');
 
 // 3. Remove a card when its button is clicked.
+// const buttons = document.querySelectorAll('button');
+// buttons.forEach((button) => {
+//     button.onclick = () => button.parentElement.remove();
+// });
 
 // 4. Change the event listener to the following Toggle the class "glow" to the image when you click the card’s button.
+// const buttons = document.querySelectorAll('button');
+// buttons.forEach((button) => {
+//     button.addEventListener('click', () => {
+//         button.parentElement.firstElementChild.classList.toggle('glow');
+//     });
+// });
 
 // 5. Change the event listener to the following. Change the title of all other cards to "Jealous 👀" when you click on a card’s button. (BONUS: Change the title of the card that was clicked to "I’m the greatest!")
-
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        button.parentElement.children[1].textContent = 'I’m the greatest!';
+    });
+});
 
 //INTERMEDIATE CHALLENGES//
 
