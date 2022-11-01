@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --hue: 220;
+    --accent: hsl(var(--hue) 80% 70%);
+    --bg: hsl(var(--hue) 50% 96%);
+    --txt: hsl(var(--hue) 70% 14%);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    font-size: 2rem;
+    line-height: 1.5;
+    background-color: var(--bg);
+    color: var(--txt);
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    background-image: url(assets/wiggle.svg);
+}
+
+.banner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    padding: 6rem 2rem;
+}
+
+.content {
+    max-width: 35ch;
+    display: grid;
+    gap: 3rem;
+    background-color: var(--bg);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+.content h2 {
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+.shirt {
+    --shirt: hsl(var(--hue) 60% 50%);
+    color: var(--shirt);
+}
+
+.text-container {
+    display: grid;
+    gap: .6rem;
+}
+
+button {
+    width: 60px;
+    height: 60px;
+    border-radius: 100vmax;
+    border: none;
+    background-color: hsl(var(--hue) 60% 50%);
+    transition: box-shadow 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:is(:hover, :focus-visible) {
+    box-shadow: 0 0 0 5px var(--bg),
+                0 0 0 12px hsl(var(--hue) 60% 50%);
+}
+
+[data-color="90"] {
+    --hue: 90;
+}
+
+[data-color="10"] {
+    --hue: 10;
+}
+
+[data-color="260"] {
+    --hue: 260;
+}
+
+[data-color="320"] {
+    --hue: 320;
+}
