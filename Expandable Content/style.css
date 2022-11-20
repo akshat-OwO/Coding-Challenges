@@ -1,0 +1,63 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .5em;
+    align-items: flex-start;
+    background-color: #f3f3f3;
+}
+
+article {
+    border: 1px solid black;
+    background-color: white;
+    padding: 1em;
+}
+
+.expand-cutoff {
+    --max-lines: 3;
+    --line-height: 1.4;
+
+    max-height: calc(var(--max-lines) * 1em * var(--line-height));
+    line-height: var(--line-height);
+
+    overflow: hidden;
+    position: relative;
+}
+
+.expand-cutoff:has(~ .expand-btn:not(:checked)):before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: calc(1em * var(--line-height));
+    background: linear-gradient(to bottom, transparent, white);
+    pointer-events: none;
+}
+
+.expand-btn {
+    appearance: none;
+    padding: .5em;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.expand-btn:hover {
+    background-color: #CCC;
+}
+
+.expand-btn::before {
+    content: 'Expand';
+}
+
+.expand-btn:checked:before {
+    content: 'Collapse';
+}
+
+.expand-cutoff:has(~ .expand-btn:checked) {
+    max-height: none;
+}
