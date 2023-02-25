@@ -46,17 +46,49 @@ const medium_amt = 124.234;
 const large_amt = 123_224_223_159;
 
 // 1. Create a new array called uniqueNumbers with all unique numbers in the numbers array.
+const uniqueNumbers = [...new Set(numbers)];
+console.log("🚀 ~ uniqueNumbers:", uniqueNumbers)
 
 // 2. Insert the sum of the new uniqueNumbers array as the next sibling of the heading "Listing Numbers" in a <p> tag.
+const numbersId = document.querySelector('#numbers');
+numbersId.insertAdjacentHTML('afterend', `<p>${uniqueNumbers.reduce((acc, num) => acc + num, 0)}</p>`);
 
 // 3. Loop through each number in the uniqueNumbers array and insert an <li> tag for each number inside the <ul> with the id "numbersList".
+const numbersList = document.querySelector('#numbersList');
+numbersList.innerHTML = uniqueNumbers.map(n => `<li>${n}</li>`).join('');
 
 // 4. Format each number in the uniqueNumbers array as a currency string with a dollar sign and two decimal places (e.g., $1.00, etc.).
+const listItems = document.querySelectorAll('li');
+listItems.forEach((item) => {
+    const value = +item.textContent;
+    item.textContent = `${value.toLocaleString(undefined, {
+        style: 'currency',
+        currency: 'USD'
+    })}`;
+});
 
 // 5. Output small_amt in a <p> tag as the next sibling. Format the number as a currency string, assuming 1234 represents pennies (i.e., $12.34).
+const section = document.querySelector('[aria-label="Formatting Items"]');
+const appendToSection = (str) => {
+    section.insertAdjacentHTML('beforeend', str);
+}
+appendToSection(`<p>${(small_amt / 100).toLocaleString(undefined, {
+    style: 'currency',
+    currency: 'USD'
+})}</p>`);
 
 // 6. Output medium_amt in a <p> tag as the next sibling to your <p id="small_amt"> with the id "medium_amt". Format the number as a number with only two decimal places (e.g., 124.23).
+appendToSection(`<p id="medium_amt">${medium_amt.toLocaleString(undefined, {
+    maximumFractionDigits: 2
+})}</p>`)
 
 // 7. Output large_amt in a <p> tag as the next sibling to your <p id="medium_amt"> with the id "large_amt". Format it as a number with a comma separating the thousands (e.g., 123,224,223,159).
+appendToSection(`<p id="large_amt">${large_amt.toLocaleString()}</p>`)
 
 // 8. Format "large_amt" as a compact number with a maximum of one fraction digit (e.g., 123.2B).
+const largeAmt = document.querySelector('#large_amt');
+const value = +largeAmt.textContent.split(',').join('');
+largeAmt.textContent = value.toLocaleString('en-US', {
+    notation: 'compact',
+    maximumFractionDigits: 1
+});
